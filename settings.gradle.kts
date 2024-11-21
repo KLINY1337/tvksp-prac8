@@ -6,3 +6,5 @@
  */
 
 rootProject.name = "tvksp-prac8"
+
+include("prac8-kafka")
