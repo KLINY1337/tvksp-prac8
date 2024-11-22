@@ -6,5 +6,6 @@ spec:
   containers:
     - name: java-producer
       image: docker.io/library/java-producer:latest
+      imagePullPolicy: Never
       ports:
         - containerPort: 8080
