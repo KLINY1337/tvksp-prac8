@@ -4,7 +4,7 @@ FROM gradle:8.10-jdk21-alpine AS build
 # Set up project files and build environment
 WORKDIR /project
 COPY . /project
-COPY gradle/libs.versions.toml ./gradle/
+COPY ./gradle/libs.versions.toml ./project/gradle/libs.versions.toml
 
 # Build the application
 RUN gradle build
