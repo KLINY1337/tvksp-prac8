@@ -11,4 +11,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/data/volume" # Sets the volume's path
+    path: "/home/kliny/data/volume" # Sets the volume's path
