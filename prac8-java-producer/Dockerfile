@@ -5,6 +5,9 @@ FROM gradle:8.10-jdk21-alpine AS build
 WORKDIR /project
 COPY . /project
 
+# Copy the gradle directory to ensure libs.versions.toml is included
+COPY gradle /project/gradle
+
 # Build the application
 RUN gradle build
 
@@ -14,8 +17,8 @@ FROM eclipse-temurin:21-jre-alpine
 ARG JAR_FILE=prac8-java-producer.jar
 
 # Copy the application JAR and resources from the build stage
-COPY --from=build /project/invexion-app/build/libs/${JAR_FILE} /libs/
-COPY --from=build /project/invexion-app/build/resources /resources/
+COPY --from=build /project/prac8-java-producer/build/libs/${JAR_FILE} /libs/
+COPY --from=build /project/prac8-java-producer/build/resources /resources/
 
 # Default command to run the application
 CMD ["java", "-jar", "/libs/prac8-java-producer.jar"]
