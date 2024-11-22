@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: java-producer-pod
+spec:
+  containers:
+    - name: java-producer
+      image: docker.io/library/java-producer:latest
+      ports:
+        - containerPort: 8080
