@@ -11,7 +11,7 @@ repositories {
 dependencies {
     implementation(libs.spring.boot.starter.web)
 
-    implementation(libs.spring.jdbc)
+    implementation(libs.spring.boot.starter.jdbc)
     implementation(libs.postgresql)
 
     compileOnly(libs.lombok)
