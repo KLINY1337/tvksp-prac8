@@ -9,3 +9,4 @@ rootProject.name = "tvksp-prac8"
 
 include("prac8-kafka")
 include("prac8-postgres")
+include("prac8-java-producer")

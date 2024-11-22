@@ -1,0 +1,12 @@
+logging.level:
+  org.springframework.jdbc.core: debug
+
+server.port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://postgresql-dev:5432/tvksp_prac8
+    username: app
+    password: root
+  liquibase:
+    change-log: classpath:db/changelog/java-producer-liquibase-master.xml
