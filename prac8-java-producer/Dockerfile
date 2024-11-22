@@ -6,11 +6,12 @@ WORKDIR /project
 COPY . /project
 
 # Build the application
-ARG JAR_FILE=prac8-java-producer.jar
 RUN gradle build
 
 # Stage 2: Run application using a JDK 21 runtime image
 FROM eclipse-temurin:21-jre-alpine
+
+ARG JAR_FILE=prac8-java-producer.jar
 
 # Copy the application JAR and resources from the build stage
 COPY --from=build /project/invexion-app/build/libs/${JAR_FILE} /libs/
