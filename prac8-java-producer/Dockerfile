@@ -5,9 +5,6 @@ FROM gradle:8.10-jdk21-alpine AS build
 WORKDIR /project
 COPY . /project
 
-# Copy the gradle directory to ensure libs.versions.toml is included
-COPY gradle /project/gradle
-
 # Build the application
 RUN gradle build
 
