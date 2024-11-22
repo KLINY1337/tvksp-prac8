@@ -19,3 +19,13 @@ dependencies {
 
     runtimeOnly(libs.liquibase.core)
 }
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+application {
+    mainClass = "com.tvkspprac8.producer.ProducerApplication"
+}
