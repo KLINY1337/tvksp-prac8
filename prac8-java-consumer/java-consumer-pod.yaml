@@ -8,4 +8,4 @@ spec:
       image: docker.io/library/java-consumer:latest
       imagePullPolicy: Never
       ports:
-        - containerPort: 8080
+        - containerPort: 8081
