@@ -10,23 +10,56 @@ image:
   tag: 3.9.0-debian-12-r1
   pullPolicy: IfNotPresent
 
+# Disable SASL and TLS authentication
 auth:
-  clientProtocol: plaintext # Disable SASL/SSL for client communication
-  interBrokerProtocol: plaintext # Disable SASL/SSL for inter-broker communication
+  clientProtocol: plaintext
+  interBrokerProtocol: plaintext
   sasl:
-    enabled: false # Disable SASL
+    enabled: false
     jaas:
-      enabled: false # Disable JAAS
+      enabled: false
   tls:
-    enabled: false # Disable TLS encryption
+    enabled: false
 
-allowPlaintextListener: true # Enable PLAINTEXT listener explicitly
+allowPlaintextListener: true # Explicitly allow PLAINTEXT listener
 
+# Listeners configuration (multiple listeners)
 listeners:
-  plaintext:
-    port: 9092 # PLAINTEXT listener port
+  client:
+    name: CLIENT
+    containerPort: 9092
+    protocol: PLAINTEXT
+    sslClientAuth: ""  # No SSL/TLS client authentication
 
-## Persistence configuration
+  interbroker:
+    name: INTERNAL
+    containerPort: 9094
+    protocol: PLAINTEXT
+    sslClientAuth: ""  # No SSL/TLS client authentication
+
+  external:
+    name: EXTERNAL
+    containerPort: 9095
+    protocol: PLAINTEXT
+    sslClientAuth: ""  # No SSL/TLS client authentication
+
+  controller:
+    name: CONTROLLER
+    containerPort: 9093
+    protocol: PLAINTEXT
+    sslClientAuth: ""  # No SSL/TLS client authentication
+
+# Zookeeper configuration (disable authentication)
+zookeeper:
+  enabled: true
+  auth:
+    enabled: false  # Disable Zookeeper authentication
+
+# External access
+externalAccess:
+  enabled: false  # Disable external access by default
+
+# Persistence settings
 persistence:
   enabled: true
-  size: 8Gi # Adjust size as needed
+  size: 8Gi
