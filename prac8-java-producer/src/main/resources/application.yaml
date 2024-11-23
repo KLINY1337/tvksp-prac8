@@ -20,6 +20,6 @@ spring.kafka:
     sasl:
       mechanism: SCRAM-SHA-256
       security.protocol: SASL_PLAINTEXT
-      jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="user1" password="scCEiQsotr";
+      jaas.config: "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"user1\" password=\"scCEiQsotr\";"
 
 # Password can be taken from: kubectl get secret my-kafka-user-passwords --namespace default -o jsonpath='{.data.client-passwords}' | base64 -d | cut -d , -f 1
