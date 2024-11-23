@@ -37,27 +37,11 @@ listeners:
     protocol: PLAINTEXT
     sslClientAuth: ""  # No SSL/TLS client authentication
 
-  external:
-    name: EXTERNAL
-    containerPort: 9095
-    protocol: PLAINTEXT
-    sslClientAuth: ""  # No SSL/TLS client authentication
-
   controller:
     name: CONTROLLER
     containerPort: 9093
     protocol: PLAINTEXT
     sslClientAuth: ""  # No SSL/TLS client authentication
-
-# Zookeeper configuration (disable authentication)
-zookeeper:
-  enabled: true
-  auth:
-    enabled: false  # Disable Zookeeper authentication
-
-# External access
-externalAccess:
-  enabled: false  # Disable external access by default
 
 # Persistence settings
 persistence:
