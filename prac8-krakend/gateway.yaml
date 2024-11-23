@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: krakend-deploy
+  labels:
+    application: apigateway
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      application: apigateway
+  template:
+    metadata:
+      labels:
+        application: apigateway
+    spec:
+      automountServiceAccountToken: false
+      volumes:
+        - name: krakend-cfg
+          configMap:
+            name: krakend-cfg
+      containers:
+        - name: application
+          resources:
+            requests:
+              memory: '64Mi'
+              cpu: '100m'
+            limits:
+              memory: '1024Mi'
+              cpu: '1000m'
+          image: devopsfaith/krakend:1.2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8079
+          volumeMounts:
+            - name: krakend-cfg
+              mountPath: /etc/krakend
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apigateway
+  labels:
+    application: apigateway
+spec:
+  type: NodePort
+  selector:
+    application: apigateway
+  ports:
+    - port: 8079
+      targetPort: 8079
+      nodePort: 30007  # Optional: specify a nodePort or let Kubernetes assign one
