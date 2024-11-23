@@ -1,0 +1,9 @@
+auth:
+  clientProtocol: plaintext # Disable SASL/SSL
+  interBrokerProtocol: plaintext # Use plaintext for inter-broker communication
+  sasl:
+    enabled: false
+    jaas:
+      enabled: false
+  tls:
+    enabled: false
