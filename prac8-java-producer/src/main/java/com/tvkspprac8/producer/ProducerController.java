@@ -25,14 +25,6 @@ public class ProducerController {
     private final NewTopic topic;
     private long count = 0;
 
-    @GetMapping("/strings")
-    public List<String> getAllProducedStrings() {
-        return jdbcTemplate.query(
-                "SELECT value FROM random_strings",
-                (rs, rowNum) -> rs.getString("value")
-        );
-    }
-
     @Scheduled(cron = "0 * * * * *")
     public void produceMessageToKafka() {
         log.info("!!!!PRODUCING MESSAGE TO KAFKA!!!!");
