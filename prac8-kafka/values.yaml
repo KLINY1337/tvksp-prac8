@@ -1,4 +1,8 @@
-replicaCount: 1
+controller:
+  replicaCount: 1 # Enable KRaft controllers for metadata management
+
+kafka:
+  replicaCount: 3 # Number of Kafka brokers
 
 image:
   registry: docker.io
@@ -21,11 +25,6 @@ allowPlaintextListener: true # Enable PLAINTEXT listener explicitly
 listeners:
   plaintext:
     port: 9092 # PLAINTEXT listener port
-
-zookeeper:
-  enabled: true
-  auth:
-    enabled: false # Disable Zookeeper authentication
 
 ## Persistence configuration
 persistence:
