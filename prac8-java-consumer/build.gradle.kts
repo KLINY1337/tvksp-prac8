@@ -29,5 +29,5 @@ java {
 }
 
 application {
-    mainClass = "com.tvkspprac8.producer.ConsumerApplication"
+    mainClass = "com.tvkspprac8.consumer.ConsumerApplication"
 }
