@@ -1,0 +1,8 @@
+server.port: 8082
+
+spring.data.redis:
+  host: my-redis-master
+  port: 6379
+  password: WbC7LsZVq3
+
+# password from: export REDIS_PASSWORD=$(kubectl get secret --namespace default my-redis -o jsonpath="{.data.redis-password}" | base64 -d)

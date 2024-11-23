@@ -22,6 +22,7 @@ jackson-databind = "2.18.1"
 spring-cloud = "4.1.3"
 postgresql = "42.7.4"
 spring-kafka = "3.3.0"
+spring-boot-starter-data-redis = "3.4.0"
 
 [libraries]
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
@@ -52,6 +53,7 @@ spring-cloud-starter-openfeign = { module = "org.springframework.cloud:spring-cl
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
 spring-boot-configurationProcessor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "spring-boot" }
 spring-kafka = { module = "org.springframework.kafka:spring-kafka", version.ref = "spring-kafka" }
+spring-boot-starter-data-redis = { module = "org.springframework.boot:spring-boot-starter-data-redis", version.ref = "spring-boot-starter-data-redis" }
 
 [plugins]
 springframework-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: java-auth-pod
+spec:
+  containers:
+    - name: java-auth
+      image: docker.io/library/java-auth:latest
+      imagePullPolicy: Never
+      ports:
+        - containerPort: 8082

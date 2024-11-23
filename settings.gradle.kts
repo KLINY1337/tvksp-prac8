@@ -12,4 +12,5 @@ include(
     "prac8-postgres",
     "prac8-java-producer",
     "prac8-java-consumer",
+    "prac8-auth"
 )
