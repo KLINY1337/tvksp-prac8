@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: java-consumer-pod
+spec:
+  containers:
+    - name: java-consumer
+      image: docker.io/library/java-consumer:latest
+      imagePullPolicy: Never
+      ports:
+        - containerPort: 8080
