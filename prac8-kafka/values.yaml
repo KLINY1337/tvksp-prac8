@@ -1,9 +1,33 @@
+replicaCount: 1
+
+image:
+  registry: docker.io
+  repository: bitnami/kafka
+  tag: 3.5.1-debian-11-r0
+  pullPolicy: IfNotPresent
+
 auth:
-  clientProtocol: plaintext # Disable SASL/SSL
-  interBrokerProtocol: plaintext # Use plaintext for inter-broker communication
+  clientProtocol: plaintext # Disable SASL/SSL for client communication
+  interBrokerProtocol: plaintext # Disable SASL/SSL for inter-broker communication
   sasl:
-    enabled: false
+    enabled: false # Disable SASL
     jaas:
-      enabled: false
+      enabled: false # Disable JAAS
   tls:
-    enabled: false
+    enabled: false # Disable TLS encryption
+
+allowPlaintextListener: true # Enable PLAINTEXT listener explicitly
+
+listeners:
+  plaintext:
+    port: 9092 # PLAINTEXT listener port
+
+zookeeper:
+  enabled: true
+  auth:
+    enabled: false # Disable Zookeeper authentication
+
+## Persistence configuration
+persistence:
+  enabled: true
+  size: 8Gi # Adjust size as needed
