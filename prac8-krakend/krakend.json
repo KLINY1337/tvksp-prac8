@@ -1,0 +1,131 @@
+{
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 3,
+  "name": "api-gateway",
+  "extra_config": {
+    "qos/ratelimit/service": {
+      "max_rate": 5,
+      "every": "1s",
+      "capacity": 2,
+      "client_max_rate": 2,
+      "key": "",
+      "strategy": "ip",
+      "client_capacity": 2
+    },
+    "telemetry/opentelemetry": {
+      "trace_sample_rate": 1,
+      "metric_reporting_period": 1,
+      "exporters": {
+        "prometheus": [
+          {
+            "name": "my-prometheus-prometheus-node-exporter",
+            "port": 9100
+          }
+        ],
+        "otlp": [
+          {
+            "name": "jaeger-agent",
+            "host": "http://my-jaeger-agent",
+            "port": 5778,
+            "use_http": false,
+            "disable_metrics": false,
+            "disable_traces": false
+          },
+          {
+            "name": "jaeger-agent",
+            "host": "http://my-jaeger-agent",
+            "port": 5778,
+            "use_http": false,
+            "disable_metrics": false,
+            "disable_traces": false
+          }
+        ]
+      },
+      "layers": {
+        "global": {
+          "disable_metrics": false,
+          "disable_traces": false,
+          "disable_propagation": false
+        },
+        "proxy": {
+          "disable_metrics": false,
+          "disable_traces": false
+        },
+        "backend": {
+          "metrics": {
+            "disable_stage": false,
+            "round_trip": false,
+            "read_payload": false,
+            "detailed_connection": false,
+            "static_attributes": []
+          },
+          "traces": {
+            "disable_stage": false,
+            "round_trip": false,
+            "read_payload": false,
+            "detailed_connection": false,
+            "static_attributes": []
+          }
+        }
+      }
+    },
+    "telemetry/logging": {
+      "level": "DEBUG",
+      "prefix": "[KRAKEND]",
+      "syslog": false,
+      "stdout": true,
+      "format": "logstash",
+      "syslog_facility": "local3"
+    },
+    "telemetry/logstash": {
+      "enabled": true
+    },
+    "telemetry/gelf": {
+      "address": "http://my-graylog-master:9000",
+      "enable_tcp": true
+    }
+  },
+  "timeout": "3000ms",
+  "cache_ttl": "300s",
+  "output_encoding": "json",
+  "endpoints": [
+    {
+      "endpoint": "/register",
+      "method": "POST",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/auth/register",
+          "encoding": "json",
+          "sd": "static",
+          "method": "POST",
+          "host": [
+            "http://java-auth-service:8082"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/generated-strings",
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/consumer/strings",
+          "encoding": "json",
+          "sd": "static",
+          "method": "GET",
+          "host": [
+            "http://java-auth-service:8082"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "X-User-Token"
+      ]
+    }
+  ],
+  "port": 8079
+}
