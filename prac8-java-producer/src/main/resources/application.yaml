@@ -16,13 +16,6 @@ spring:
 spring.kafka:
   admin.auto-create: true
   bootstrap-servers: my-kafka:9092
-#  properties:
-#    sasl:
-#      mechanism: SCRAM-SHA-256
-#      security.protocol: SASL_PLAINTEXT
-#      jaas.config: 'org.apache.kafka.common.security.scram.ScramLoginModule required username="user1" password="scCEiQsotr";'
   producer:
     key-serializer: "org.apache.kafka.common.serialization.StringSerializer"
     value-serializer: "org.apache.kafka.common.serialization.StringSerializer"
-
-# Password can be taken from: kubectl get secret my-kafka-user-passwords --namespace default -o jsonpath='{.data.client-passwords}' | base64 -d | cut -d , -f 1

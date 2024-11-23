@@ -1,0 +1,22 @@
+logging.level:
+  org.springframework.jdbc.core: debug
+  org.springframework.kafka: debug
+  org.apache.kafka: debug
+
+server.port: 8081
+
+spring:
+  datasource:
+    url: jdbc:postgresql://postgresql-dev-2:5432/tvksp_prac8
+    username: app
+    password: root
+  liquibase:
+    change-log: classpath:db/changelog/java-consumer-liquibase-master.xml
+
+spring.kafka:
+  admin.auto-create: true
+  bootstrap-servers: my-kafka:9092
+  consumer:
+    auto-offset-reset: earliest
+    key-deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+    value-deserializer: "org.apache.kafka.common.serialization.StringDeserializer"

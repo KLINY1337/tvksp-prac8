@@ -7,6 +7,9 @@
 
 rootProject.name = "tvksp-prac8"
 
-include("prac8-kafka")
-include("prac8-postgres")
-include("prac8-java-producer")
+include(
+    "prac8-kafka",
+    "prac8-postgres",
+    "prac8-java-producer",
+    "prac8-java-consumer",
+)
