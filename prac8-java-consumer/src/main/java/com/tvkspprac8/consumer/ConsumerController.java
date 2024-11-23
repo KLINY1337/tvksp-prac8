@@ -28,7 +28,7 @@ public class ConsumerController {
         );
     }
 
-    @KafkaListener(topics = "test-topic")
+    @KafkaListener(id = "consumerAppId", topics = "test-topic")
     public void listen(String message) {
         log.info("!!!!CONSUMING MESSAGE FROM KAFKA!!!!. MESSAGE: {}", message);
         NamedParameterJdbcTemplate namedJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
