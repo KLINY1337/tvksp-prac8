@@ -1,5 +1,7 @@
 logging.level:
   org.springframework.jdbc.core: debug
+  org.springframework.kafka: debug
+  org.apache.kafka: debug
 
 server.port: 8080
 
@@ -10,3 +12,7 @@ spring:
     password: root
   liquibase:
     change-log: classpath:db/changelog/java-producer-liquibase-master.xml
+
+spring.kafka:
+  admin.auto-create: true
+  bootstrap-servers: my-kafka:9092

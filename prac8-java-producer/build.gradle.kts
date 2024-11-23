@@ -18,6 +18,8 @@ dependencies {
     annotationProcessor(libs.lombok)
 
     runtimeOnly(libs.liquibase.core)
+
+    implementation(libs.spring.kafka)
 }
 
 java {
